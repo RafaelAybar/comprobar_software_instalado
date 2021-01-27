@@ -1,6 +1,6 @@
 Write-Output "######### Programas instalados ###############################" >> software.txt
 
-Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-Table >> software.txt
+Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-Table -AutoSize >> software.txt
 
 Write-Output "######### Windows Store ###############################" >> software.txt
 
@@ -22,8 +22,12 @@ dir -Force "C:\Program Files" >> archivos_programa.txt
 Write-Output "##### Archivos programa x86 ########3"
 dir -Force "C:\Program Files (x86)" >> archivos_programa.txt
 
+dir -Force "C:\Users\$Env:USERNAME\AppData\Local" >>archivos_programa.txt
+
+
 Write-Output "######## Lista variables de entorno del usuario ###########" >> envars.txt
 Get-ChildItem Env: | Sort Name >> envars.txt
 
 Write-Output "######## Lista de servicios ###########" >> servicios.txt
 Get-Service | Format-Table >> servicios.txt
+
