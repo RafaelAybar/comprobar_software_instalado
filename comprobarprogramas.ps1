@@ -1,6 +1,7 @@
+New-Item -ItemType Directory -Force -Path evidencias
 Write-Output "######### Programas instalados ###############################" >> evidencias\software.txt
 
-Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-Table -AutoSize >> software.txt
+Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-Table -AutoSize >>  evidencias\software.txt
 
 Write-Output "######### Windows Store ###############################" >> evidencias\software.txt
 
@@ -26,7 +27,7 @@ dir -Force "C:\Users\$Env:USERNAME\AppData\Local" >> evidencias\archivos_program
 
 
 Write-Output "######## Lista variables de entorno del usuario ###########" >> evidencias\envars.txt
-Get-ChildItem Env: | Sort Name >> envars.txt
+Get-ChildItem Env: | Sort Name >>  evidencias\envars.txt
 
 Write-Output "######## Lista de servicios ###########" >> evidencias\servicios.txt
 Get-Service | Format-Table >> evidencias\servicios.txt
@@ -34,3 +35,6 @@ Get-Service | Format-Table >> evidencias\servicios.txt
 Write-Output "################ Lista de procesos en ejecución ###############" >> evidencias\listaprocesos.txt
 
 Get-Process | Format-Table  >> evidencias\listaprocesos.txt
+
+Write-Output "################ Lista de programas que se ejecutan al inicio ###############" >> evidencias\programas_inicio.txt
+Get-CimInstance Win32_StartupCommand | Select-Object Name, command, Location, User | Format-List >> evidencias\programas_inicio.txt

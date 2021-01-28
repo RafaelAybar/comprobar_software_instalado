@@ -6,5 +6,5 @@ El script se ejecutará con el comando
 
 ```.\comprobarprogramas.ps1```
 
-Y nos creará ficheros con la lista de programas instalados, las variables de entorno, servicios y demás información útil para
+Y nos creará ficheros con la lista de programas instalados en el directorio `evidencias`, las variables de entorno, servicios y demás información útil para
 saber qué software hay instalado.
